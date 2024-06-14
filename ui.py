@@ -22,49 +22,49 @@ def page_carrega_dado():
     # Solicito que o usuário selecione uma data e imprimo na tela a data selecionada
     container.subheader('Digite a data de Referência para preenchimento das planilhas:')
     data_referencia = container.date_input("", value=None, format="DD/MM/YYYY")
-    container.write(f'Data selecionada: {dp.dia(data_referencia)}/{dp.mes(data_referencia)}/{dp.ano(data_referencia)}')
 
-    # Solicito que o usuário insira as 4 planilhas base para o preenchimento das demais
-    container.subheader('Importe os 4 arquivos de relatório utilizados para o preenchimento das planilhas:')
-    uploaded_files = container.file_uploader('', accept_multiple_files=True, type=["xlsx"])
+    #Verifico se o usuário inputou algum valor em data_referencia para poder prosseguir
+    if data_referencia is not None:
+        container.write(f'Data selecionada: {dp.dia(data_referencia)}/{dp.mes(data_referencia)}/{dp.ano(data_referencia)}')
 
-    # Crio uma sessão com uma animação de carregamento enquanto salvo os dados na memória temporária da ferramenta para utilizá-los nas páginas de preenchimento subsequentes
-    with st.spinner('Preparando e guardando os dados de preenchimento. Por favor aguarde...'):
+        # Solicito que o usuário insira as 4 planilhas base para o preenchimento das demais
+        container.subheader('Importe os 4 arquivos de relatório utilizados para o preenchimento das planilhas:')
+        uploaded_files = container.file_uploader('', accept_multiple_files=True, type=["xlsx"])
 
-        # Verifico se a variável que armazena a data de referência passada pelo usuário não está vazia
-        if data_referencia is not None:
+        # Crio uma sessão com uma animação de carregamento enquanto salvo os dados na memória temporária da ferramenta para utilizá-los nas páginas de preenchimento subsequentes
+        with st.spinner('Preparando e guardando os dados de preenchimento. Por favor aguarde...'):
 
             # Guardo o valor desta variável na memória temporária da ferramenta para utilizá-la nas páginas de preenchimento subsequentes
             st.session_state.update({"data_referencia":data_referencia})
-        
-        # Verifico se todos os 4 arquivos foram inseridos pelo usuário. Caso tenham sido, guardo as sheets de interesse dentro da memória do programa também
-        if len(uploaded_files) == 4:
-            for uploaded_file in uploaded_files:
-                if uploaded_file.name.startswith('SCM_'):
-                    st.session_state.update({"Dados_geral_SCM":dp.load_mailing_geral(uploaded_file)}),
-                    st.session_state.update({"Dados_status_SCM":dp.load_mailing_status(uploaded_file)}),
-                    st.session_state.update({"Dados_placar_SCM":dp.load_mailing_placar(uploaded_file)})
-                if uploaded_file.name.startswith('SCC_'):
-                    st.session_state.update({"Dados_geral_SCC":dp.load_mailing_geral(uploaded_file)}),
-                    st.session_state.update({"Dados_status_SCC":dp.load_mailing_status(uploaded_file)}),
-                    st.session_state.update({"Dados_placar_SCC":dp.load_mailing_placar(uploaded_file)})
-                if uploaded_file.name.startswith('SC_'):
-                    st.session_state.update({"Dados_geral_SC":dp.load_mailing_geral(uploaded_file)}),
-                    st.session_state.update({"Dados_status_SC":dp.load_mailing_status(uploaded_file)}),
-                    st.session_state.update({"Dados_placar_SC":dp.load_mailing_placar(uploaded_file)})
-                if uploaded_file.name.startswith('SSV_'):
-                    st.session_state.update({"Dados_geral_SSV":dp.load_mailing_geral(uploaded_file)}),
-                    st.session_state.update({"Dados_status_SSV":dp.load_mailing_status(uploaded_file)}),
-                    st.session_state.update({"Dados_placar_SSV":dp.load_mailing_placar(uploaded_file)})
+            
+            # Verifico se todos os 4 arquivos foram inseridos pelo usuário. Caso tenham sido, guardo as sheets de interesse dentro da memória do programa também
+            if len(uploaded_files) == 4:
+                for uploaded_file in uploaded_files:
+                    if uploaded_file.name.startswith('SCM_'):
+                        st.session_state.update({"Dados_geral_SCM":dp.load_mailing_geral(uploaded_file)}),
+                        st.session_state.update({"Dados_status_SCM":dp.load_mailing_status(uploaded_file)}),
+                        st.session_state.update({"Dados_placar_SCM":dp.load_mailing_placar(uploaded_file)})
+                    if uploaded_file.name.startswith('SCC_'):
+                        st.session_state.update({"Dados_geral_SCC":dp.load_mailing_geral(uploaded_file)}),
+                        st.session_state.update({"Dados_status_SCC":dp.load_mailing_status(uploaded_file)}),
+                        st.session_state.update({"Dados_placar_SCC":dp.load_mailing_placar(uploaded_file)})
+                    if uploaded_file.name.startswith('SC_'):
+                        st.session_state.update({"Dados_geral_SC":dp.load_mailing_geral(uploaded_file)}),
+                        st.session_state.update({"Dados_status_SC":dp.load_mailing_status(uploaded_file)}),
+                        st.session_state.update({"Dados_placar_SC":dp.load_mailing_placar(uploaded_file)})
+                    if uploaded_file.name.startswith('SSV_'):
+                        st.session_state.update({"Dados_geral_SSV":dp.load_mailing_geral(uploaded_file)}),
+                        st.session_state.update({"Dados_status_SSV":dp.load_mailing_status(uploaded_file)}),
+                        st.session_state.update({"Dados_placar_SSV":dp.load_mailing_placar(uploaded_file)})
 
-            # Gero uma mensagem de sucesso na importação para o usuário
-            st.success('Arquivos importados com sucesso!')
+                # Gero uma mensagem de sucesso na importação para o usuário
+                st.success('Arquivos importados com sucesso!')
 
-    # Espaçamento
-    container.write('')
-    container.write('')
-    container.write('')
-    container.write('')
+        # Espaçamento
+        container.write('')
+        container.write('')
+        container.write('')
+        container.write('')
 
 def page_preenche_indicador():
 
