@@ -32,7 +32,7 @@ def page_carrega_dado():
     with st.spinner('Preparando e guardando os dados de preenchimento. Por favor aguarde...'):
 
         # Verifico se a variável que armazena a data de referência passada pelo usuário não está vazia
-        if data_referencia:
+        if data_referencia is not None:
 
             # Guardo o valor desta variável na memória temporária da ferramenta para utilizá-la nas páginas de preenchimento subsequentes
             st.session_state.update({"data_referencia":data_referencia})
