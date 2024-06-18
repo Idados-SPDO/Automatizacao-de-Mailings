@@ -77,7 +77,7 @@ def preenche_status(df_status, workbook, sondagem):
         'SEM PERFIL': 'DESATIVAR',
         'EMPRESA FECHADA': 'EMP_FECHADA',
         'MAILING EXCEDENTE': 'BASE EXTRA',
-        'NÃO RESPONDE HÁ MESES, EM TRATAMENTO': 'RECUPERAÇÃO',
+        'TRATAR COM RELACIONAMENTO': 'RECUPERAÇÃO',
         'EM ESTUDO': 'RECUPERAÇÃO',
         'EMPRESA RECUPERADA/ PROSPECTADA': 'PROSPECTADO RECUPERADO'
     }
