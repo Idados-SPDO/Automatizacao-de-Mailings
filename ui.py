@@ -260,7 +260,7 @@ def page_preenche_taxa_resposta():
             # Salvo o df_atualizado em um buffer de memória
             buffer = BytesIO()
             with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
-                df_atualizado.to_excel(writer, index = False)
+                df_atualizado.to_excel(writer, index = False, sheet_name="BD_SACE")
             buffer.seek(0)
 
             # Dou ao usuário uma prévia do conteúdo do arquivo que será baixado por ele

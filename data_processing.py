@@ -209,7 +209,7 @@ def preenche_taxa_resposta(df_taxa, df_uploaded, sondagem):
     df_taxa_resposta = df_taxa_resposta.drop_duplicates(subset=['Ação', 'Porte'])
 
     # Converto a coluna 'Data' para o tipo de dados de data
-    df_uploaded['Data'] = pd.to_datetime(df_uploaded['Data'] ).dt.strftime('%d/%m/%Y')
+    df_uploaded['Data'] = pd.to_datetime(df_uploaded['Data'], format="%d/%m/%Y" ).dt.strftime('%d/%m/%Y')
 
     # Identifico as linhas a serem atualizadas
     filtro_sondagem = (df_uploaded['Sondagem'] == sondagem) & ((df_uploaded['Data'].isin(df_taxa_resposta['Data'])) | (df_uploaded['Data'].isnull()))
