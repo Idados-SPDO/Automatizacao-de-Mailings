@@ -24,7 +24,8 @@ def main():
     if "data_referencia" not in st.session_state:
         st.session_state.update({"data_referencia":None})
 
-    dataframes = [
+    dataframes = [     
+        "Dados_status_EC", "Dados_status_ECE", "Dados_status_ECMA", "Dados_status_ECI"
         "Dados_geral_SCM", "Dados_status_SCM", "Dados_placar_SCM",
         "Dados_geral_SCC", "Dados_status_SCC", "Dados_placar_SCC",
         "Dados_geral_SC", "Dados_status_SC", "Dados_placar_SC",
