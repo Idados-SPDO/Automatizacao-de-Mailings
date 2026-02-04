@@ -1,5 +1,6 @@
 pandas
 openpyxl
-streamlit
+streamlit>=1.41.0
 babel
 altair==4.2.2
+pillow>=10
